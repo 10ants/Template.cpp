@@ -4,132 +4,63 @@
 using namespace std;
 
 template <typename T>
-
 T GetValidData(T one, T two)
 {
+    exception InvalidRequestException;
+    exception InvalidInputException;
+
     T lower = one;
     T upper = two;
-    T mid
-    bool flag = true
-       
+    T mid;
     
-    while (flag = true;)
+    if (lower > upper)
     {
-        try
-        {
-            cout << "Enter value between both boundries" << endl;
-            cin >> mid;
-
-            if ()//Invalid input like an h for (1,10)
-                {
-                    throw exception("Error: Inconsistent use of symbols");
-                }
-
-        }
-            if (mid > lower && mid < upper)
-            {
-                cout << "Nice" << endl;
-            }
-            else//Being out of range is not an exception.  If  they are out of range you ask again.
-            {
-                flag = false;
-            }
+        throw InvalidRequestException("Error: Boundries not in correct high/low format");
     }
-   return 
+
+    cout << "Enter value between both boundries" << endl;
+    cin >> mid;
+    
+    while (typeid(T) != typeid(mid))
+    {
+     cout << "Error: Input not of same type" << endl;
+    }
+
+    if (mid < lower || mid > upper)
+    {
+        throw  InvalidInputException("Error: Input not in range");
+    }
+
+    else
+    {
+        cout << "Good Job! You can follow basic instructions" << endl;
+    }
+    return mid;
 }
-
-
 
 int main()
 {
-    int int1; int int2; 
-    float float1; float float2;
-    string str1;  string str2;
-
-    try
-    {
-        do 
-        {
-            cout << "Please enter the lower boundry \n";
-            cin >> int1;
-            cout << "Please enter the upper boundry \n";
-            cin >> int2;
-            if (int1 > int2)
-            {
-                throw exception("Error: Enter lower boundry first!");
-            }
-        } while (int1 > int2);
-    }
-    catch (exception InvalidRequestException)
-    {
-            cout << InvalidRequestException.what() << endl;
-    }
+    int int1 = 1; int int2 = 5; 
+    float float1 = 1.0; float float2 = 5.0;
+    string str1 = "apple";  string str2 = "orange";
 
 
+    int answerI;
+    float answerF;
+    string answerS;
 
     try
     {
         int answer = GetValidData(int1, int2);
     }
-    catch(exception InvalidInputException)
-    {
-        cout << InvalidInputException.what() << endl;
-    }
-
-
-
-    try
-    {
-        do
-        {
-            cout << "Please enter the lower boundry \n";
-            cin >> float1;
-            cout << "Please enter the upper boundry \n";
-            cin >> float2;
-            if (float1 > float2)
-            {
-                throw exception("Error: Enter lower boundry first!");
-            }
-        } while (float1 > float2);
-    }
-    catch (exception InvalidRequestException)
+    catch (InvalidRequestException)
     {
         cout << InvalidRequestException.what() << endl;
     }
-    try
-    {
-        float float3 = GetValidData(float1, float2);
-    }
-    catch (exception InvalidInputException)
+    catch (InvalidInputException)
     {
         cout << InvalidInputException.what() << endl;
     }
 
-
-
-    try
-    {
-        do
-        {
-            cout << "Please enter the lower boundry \n";
-            getline(cin, str1);
-            cout << "Please enter the upper boundry \n";
-            getline(cin, str2);
-            if (str2 < str1)
-            {
-                throw exception("Error: Enter the lower boundry first!");
-            }
-        } while (str2 < str1);
-    }
-    catch (exception InvalidRequestException)
-    {
-        cout << InvalidRequestException.what() << endl;
-    }
-    try
-    {
-        string str3 = GetValidData(str1,str2);
-    }
-    catch (exception InvalidInputException)
-    {
-        cout << InvalidInputException.what() << endl;
-    }
+    cout << answerI << endl;
+}
