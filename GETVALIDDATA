@@ -1,6 +1,5 @@
 #include <iostream>
-#include <string>
-#include <exception>
+
 using namespace std;
 
 class InvalidRequestException {
@@ -25,13 +24,13 @@ private:
     string msg_;
 };
 
+template <class T>
 
-template <typename T>
 T GetValidData(T one, T two)
 {
     T lower = one;
     T upper = two;
-    T mid;
+    T mid = one;
 
     if (lower > upper) // If boundries are wrong 
     {
@@ -67,6 +66,9 @@ int main()
     float answerF = 0.0;
     string answerS = "Broke";
 
+
+    ///////PROPER TEST CALLS//////////
+
     try // Testing function with ints
     {
         answerI = GetValidData(1, 5);
@@ -96,6 +98,50 @@ int main()
     try // Testing function with strings
     {
         answerS = GetValidData("apple", "dog");
+    }
+    catch (const InvalidRequestException& e)
+    {
+        cout << e.getMessage() << endl;
+    }
+    catch (const InvalidInputException& e)
+    {
+        cout << e.getMessage() << endl;
+    }
+
+
+
+ ///////////BAD INPUT TEST CALLS////////////
+
+
+    try // Testing function with ints
+    {
+        answerI = GetValidData(9, 5);
+    }
+    catch (const InvalidRequestException& e)
+    {
+        cout << e.getMessage() << endl;
+    }
+    catch (const InvalidInputException& e)
+    {
+        cout << e.getMessage() << endl;
+    }
+
+    try // Testing function with float
+    {
+        answerF = GetValidData(9.0, 5.0);
+    }
+    catch (const InvalidRequestException& e)
+    {
+        cout << e.getMessage() << endl;
+    }
+    catch (const InvalidInputException& e)
+    {
+        cout << e.getMessage() << endl;
+    }
+
+    try // Testing function with strings
+    {
+        answerS = GetValidData("zelda", "howdy");
     }
     catch (const InvalidRequestException& e)
     {
